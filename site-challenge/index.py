@@ -2,39 +2,8 @@
 # -*- coding: utf-8 -*
 
 import fonctions
-
-Single choice = {
-    "question": "",
-    "type": 1,
-    "answer": ["ok", "boloss"]
-    }
-
-Text field = {
-    "question": "",
-    "type": 2,
-    "answer": "text"
-    }
-
-Single choice + text field = {
-    "question": "",
-    "type": 3,
-    "answer": ["ok", "boloss", "text"]
-    }
-
-QCM = {
-    "question": "",
-    "type": 4,
-    "answer": ["ok", "boloss"]
-    }
-
-Tableau = {
-	"question" : "",
-	"type" : 5,
-	"answer" : [],
-	"column" : ["Used", "Not used functional", "Neither used nor functional"]
-]
-
-	}
+import cgi
+import json
 
 q1 = {
 	"id" : 1,
@@ -52,7 +21,6 @@ q1 = {
 				"Real estate"
 				]
 	}
-
 
 q2 = {
 	"id" : 2,
@@ -112,6 +80,7 @@ q6 = {
 				"Do you use a modular application architecture?",
 				"Do you do a design review at the end of your application's development?"
 				],
+
 	"column" : [
 				"Yes",
 				"No",
@@ -204,7 +173,7 @@ q18 = {
 	"type" : 5,
 	"question" : [
 				"The purchase of non-IT equipment from IT rooms (air conditioning, air treatment, inverters, etc.) according to energy efficiency criteria",
-				"Implementing the good practices of the '"'European Code of Conduct for DataCenter'"'"?,
+				"Implementing the good practices of the '"'European Code of Conduct for DataCenter?'"'",
 				"Data center PUE tracking",
 				"Regular monitoring of environmental indicators of computer rooms",
 				"Environmental impact analysis of the datacenter in life cycle approach",
@@ -236,7 +205,7 @@ q31 = {
 					"The correct sizing of the servers in relation to their use",
 					"Give priority to ASHRAE 2 compatible equipment",
 					"A procedure for provisioning and de-provisioning data-processing equipment in datacenters"
-				]
+				],
 	"column" : [
 				"Yes",
 				"No",
@@ -272,7 +241,7 @@ q41 = {
 q42 = {
 	"id" : 42,
     "question": "How many virtual servers do you have?",
-    "type": 3,
+    "type" : 3,
 	"textfield" : [0, 1],
     "answer": [
 			"In %",
@@ -285,6 +254,7 @@ q42 = {
 q43 = {
 	"id" : 43,
     "question": "What will be the evolution of your number of virtual servers for 2019? (in% or quantity)",
+	"type" : 3,
 	"textfield" : [0, 1],
     "answer": [
 			"In %",
@@ -423,6 +393,8 @@ q70 = {
 				"Yes (please specify how much in kWh / year)",
 				"No"
 				]
+
+    }
 
 q71 = {
 	"id" : 71,
@@ -593,4 +565,43 @@ q88 = {
 				]
 	}
 
-print(dictionnaire["answer"][0])
+liste_question = [q1, q2, q3, q4, q5, q6, q6, q11, q12, q13, q14, q15, q16, q17, q18, q31, q39, q40, q41, q42, q43, q44, q45, q46, q47, q48, q49, q50, q62, q63, q70, q71, q72, q73, q74, q75, q76, q77, q78, q83, q84, q85, q86, q87, q88]
+intro = True
+
+#Ouverture de la BDD .json et attribution de la valeur à la variable 'datas'
+with open('save_form.json', 'r') as f:
+    datas = json.load(f)
+
+form = cgi.FieldStorage()
+#On récupère la valeur dans le champ "name" (Si aucune valeur, v vaut None)
+v = form.getvalue("email")
+
+#On récupère les valeurs des valeurs du fichier /cgi-bin/bdd.json qui est un dictionnaire de dictionnaire via une boucle for
+for recup_dict in datas.values():
+    for recup_valeur in recup_dict.values():
+#Si la valeur récupérée est égale à la valeur récupérée dans le champ, on récupère toutes les infos et on incrémente 1 au compteur
+#afin de créer différents champs dans le dictionnaire si jamais il y a plusieurs résultats
+        if recup_valeur == v:
+            intro = False
+
+if intro == True:
+    print(fonctions.display_intro_header()+fonctions.display_intro_msg()+fonctions.display_out_footer())
+
+else:
+    for z in liste_question:
+        if z["type"] == 1:
+            print(fonctions.display_intro_header()+fonctions.display_question_type_1(z["question"])+fonctions.display_out_footer())
+        elif z["type"] == 2:
+            print(fonctions.display_intro_header()+fonctions.display_question_type_2(z["question"])+fonctions.display_out_footer())
+        elif z["type"] == 3:
+            print(fonctions.display_intro_header()+fonctions.display_question_type_3(z["question"])+fonctions.display_out_footer())
+        elif z["type"] == 4:
+            print(fonctions.display_intro_header()+fonctions.display_question_type_4(z["question"])+fonctions.display_out_footer())
+        elif z["type"] == 5:
+            print(fonctions.display_intro_header()+fonctions.display_question_type_5(z["question"])+fonctions.display_out_footer())
+        elif z["type"] == 6:
+            print(fonctions.display_intro_header()+fonctions.display_question_type_6(z["question"])+fonctions.display_out_footer())
+        elif z["type"] == 7:
+            print(fonctions.display_intro_header()+fonctions.display_question_type_7(z["question"])+fonctions.display_out_footer())
+        elif z["type"] == 8:
+            print(fonctions.display_intro_header()+fonctions.display_question_type_8(z["question"])+fonctions.display_out_footer())
