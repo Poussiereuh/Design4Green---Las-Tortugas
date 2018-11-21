@@ -1,0 +1,42 @@
+{
+    "1": {
+        "nom": "bonneau",
+        "prenom": "valentin",
+        "promo": "ir",
+        "adresse": "xxxxx",
+        "cp": 49000,
+        "ville": "angers",
+        "photo": "images/icons8-licorne-de-lecture-80.png",
+        "compteur": 27
+    },
+    "2": {
+        "nom": "gaillard",
+        "prenom": "antoine",
+        "promo": "ir",
+        "adresse": "xxx",
+        "cp": 49000,
+        "ville": "angers",
+        "photo": "images/icons8-licorne-de-lecture-80.png",
+        "compteur": 21
+    },
+    "3": {
+        "nom": "mathelin",
+        "prenom": "pierre",
+        "promo": "ir",
+        "adresse": "xxxy",
+        "cp": 49000,
+        "ville": "angers",
+        "photo": "images/icons8-licorne-de-lecture-80.png",
+        "compteur": 18
+    },
+    "4": {
+        "nom": "pichaud",
+        "prenom": "celestin",
+        "promo": "ir",
+        "adresse": "xxx",
+        "cp": 49000,
+        "ville": "angers",
+        "photo": "images/icons8-licorne-de-lecture-80.png",
+        "compteur": 17
+    }
+}
