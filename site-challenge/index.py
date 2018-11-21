@@ -569,7 +569,7 @@ liste_question = [q1, q2, q3, q4, q5, q6, q6, q11, q12, q13, q14, q15, q16, q17,
 intro = True
 
 #Ouverture de la BDD .json et attribution de la valeur à la variable 'datas'
-with open('save_form.json', 'r') as f:
+with open('/cgi-bin/save_form.json', 'r') as f:
     datas = json.load(f)
 
 form = cgi.FieldStorage()
