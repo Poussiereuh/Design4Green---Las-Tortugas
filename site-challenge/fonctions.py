@@ -1,4 +1,5 @@
-
+#!/usr/bin/python3
+# -*- coding: utf-8 -*
 
 # Print basic html code
 def display_intro_header():
