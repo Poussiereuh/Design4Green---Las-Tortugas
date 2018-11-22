@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*
 
 import cgi
+import csv
+import random
 
 liste_choix_deter = [4, 12, 13, 39, 62]
 
@@ -825,15 +827,17 @@ def parcours_q(id_debut):
     print(html+display_out_footer())
 
 def recup_valeurs():
+	dict_tempo_csv = {}
 	form = cgi.FieldStorage()
 	if form:
-		idx = 0
 		for i in form:
-			if not form[i].value == "next":
-				idx +=1
-		print(idx-1)
+			dict_tempo_csv[i] = form[i].value.split(':')
+			
+		dict_tempo_csv.pop("next")
 
-		radio = form.getvalue("")
+
+		print(dict_tempo_csv)
+
 	else:
 		print('')
 
