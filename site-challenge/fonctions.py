@@ -100,7 +100,58 @@ def display_question_type_2(current_question):
 # Type 3: Single Choice + Text field
 def display_question_type_3(current_question):
 
-    return current_question["question"] + "HTML"
+    answer_list = current_question["answer"]
+    text_answer = current_quesion["textfield"]
+
+    html = """
+        <form method="post" action="">
+        <div id="type8" class="container">
+        <h2>
+        """
+    html += current_question["question"]
+    html += "</h2>"
+    for i in answer_list:
+        html += """
+                <p>
+                <input onclick="resetTxtField(idTxtFieldAssocie)"
+                type="radio"
+                name="
+                """
+        html += i
+        html += """
+                "
+                value="
+                """
+        html += i + ":" + answer_list[i]
+        html += """
+                "
+                id="
+                """
+        html += answer_list[i]
+        html += """
+                " required/>
+                <label for="
+                """
+        html += answer_list[i]
+        html += """
+                ">
+                """
+        html += answer_list[i]
+        html += "</label>"
+        if i in text_answer :
+            html += """
+            <input onclick="resetRadioFocus(this.id)"
+            id="
+            """
+            html += answer_list[i]
+            html += """
+                   :textill" type="text" name="other"/>
+                    """
+        html += "</p>"
+
+    html += "</div>"
+
+    return html
 
 # Type 4: Multiple choice
 def display_question_type_4(current_question):
@@ -117,8 +168,8 @@ def display_question_type_4(current_question):
 
     for i in answer_list:
         id = answer_list.index['i']
-        html +='<input type="checkbox" name=' + i
-        html += 'value=' + current_question["id"] + id
+        html += '<input type="checkbox" name=' + i
+        html += 'value=' + current_question["id"] + ":" + id
         html += 'id="' + id + '"/>'
         html += '<label for=' + id + '>' + i + '</label>'
         html+="</p>"
@@ -128,10 +179,11 @@ def display_question_type_4(current_question):
 # Type 5: Tableau single
 def display_question_type_5(current_question):
 
-        question_list = current_question["question"]
+    question_list = current_question["question"]
     answer_list = current_question["column"]
 
     html = """
+        <form method="post" action="">
         <div id="type5" class="container">
         <h2>{That is the title}</h2>
         <table style="width:100%">
@@ -175,10 +227,11 @@ def display_question_type_5(current_question):
 # Type 6: Tableau multiple
 def display_question_type_6(current_question):
 
-        question_list = current_question["question"]
+    question_list = current_question["question"]
     answer_list = current_question["column"]
 
     html = """
+        <form method="post" action="">
         <div id="type5" class="container">
         <h2>{That is the title}</h2>
         <table style="width:100%">
@@ -229,6 +282,7 @@ def display_question_type_8(current_question):
 
     answer_list = current_question["answer"]
     html = """
+        <form method="post" action="">
         <div id="type8" class="container">
         <h2>
         """
