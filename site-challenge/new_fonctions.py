@@ -5,7 +5,7 @@ import cgi
 import csv
 import random
 
-liste_choix_deter = [4, 12, 13, 39, 62]
+form = cgi.FieldStorage()
 
 q1 = {
 	"id" : 1,
@@ -74,14 +74,55 @@ q6 = {
 	"id" : 6,
 	"title" : "Ecoconception good practices",
 	"type" : 5,
-	"question" : [
-				"Do you apply the rules and best practices for digital accessibility?",
-				"Have you optimized the states and printouts in your application tools (reduced number of pages when printing, ink consumption ...)?",
-				"Do you integrate the principles of the ecodesign of digital services?",
-				"Do you use a modular application architecture?",
-				"Do you do a design review at the end of your application's development?"
-				],
+	"question" : "Do you apply the rules and best practices for digital accessibility?",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
 
+q7 = {
+	"id" : 7,
+	"title" : "Ecoconception good practices",
+	"type" : 5,
+	"question" : "Have you optimized the states and printouts in your application tools (reduced number of pages when printing, ink consumption ...)?",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q8 = {
+	"id" : 8,
+	"title" : "Ecoconception good practices",
+	"type" : 5,
+	"question" : "Do you integrate the principles of the ecodesign of digital services?",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q9 = {
+	"id" : 9,
+	"title" : "Ecoconception good practices",
+	"type" : 5,
+	"question" : "Do you use a modular application architecture?",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q10 = {
+	"id" : 10,
+	"title" : "Ecoconception good practices",
+	"type" : 5,
+	"question" : "Do you use a modular application architecture?",
 	"column" : [
 				"Yes",
 				"No",
@@ -170,22 +211,140 @@ q17 = {
 
 q18 = {
 	"id" : 18,
-	"title" : "Have you led or are you planning actions to optimize your infrastructure? Especially :",
 	"type" : 5,
-	"question" : [
-				"The purchase of non-IT equipment from IT rooms (air conditioning, air treatment, inverters, etc.) according to energy efficiency criteria",
-				"Implementing the good practices of the '"'European Code of Conduct for DataCenter?'"'",
-				"Data center PUE tracking",
-				"Regular monitoring of environmental indicators of computer rooms",
-				"Environmental impact analysis of the datacenter in life cycle approach",
-				"Optimizing the architecture and layout of rooms",
-				"The urbanization of halls in hot / cold aisles",
-				"Containment of air flows (corridors)",
-				"The use of natural cooling sources (freecooling)",
-				"Implementation of a heat recovery system for computer rooms (heating)",
-				"The set temperature in the cold corridor remains higher than 24 °",
-				"The choice of a modular datacenter architecture"
-				],
+	"question" : "Have you led or are you planning actions to optimize your infrastructure? Especially :",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q19 = {
+	"id" : 19,
+	"type" : 5,
+	"question" : "The purchase of non-IT equipment from IT rooms (air conditioning, air treatment, inverters, etc.) according to energy efficiency criteria",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q20 = {
+	"id" : 20,
+	"type" : 5,
+	"question" : """Implementing the good practices of the "European Code of Conduct for DataCenter?" """,
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q21 = {
+	"id" : 21,
+	"type" : 5,
+	"question" : "Data center PUE tracking",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q22 = {
+	"id" : 22,
+	"type" : 5,
+	"question" : "Regular monitoring of environmental indicators of computer rooms",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q23 = {
+	"id" : 23,
+	"type" : 5,
+	"question" : "Environmental impact analysis of the datacenter in life cycle approach",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q24 = {
+	"id" : 24,
+	"type" : 5,
+	"question" : "Optimizing the architecture and layout of rooms",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q25 = {
+	"id" : 25,
+	"type" : 5,
+	"question" : "The urbanization of halls in hot / cold aisles",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q26 = {
+	"id" : 26,
+	"type" : 5,
+	"question" : "Containment of air flows (corridors)",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q27 = {
+	"id" : 27,
+	"type" : 5,
+	"question" : "The use of natural cooling sources (freecooling)",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q28 = {
+	"id" : 28,
+	"type" : 5,
+	"question" : "Implementation of a heat recovery system for computer rooms (heating)",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q29 = {
+	"id" : 29,
+	"type" : 5,
+	"question" : "The set temperature in the cold corridor remains higher than 24 °",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q30 = {
+	"id" : 30,
+	"type" : 5,
+	"question" : "The choice of a modular datacenter architecture",
 	"column" : [
 				"Yes",
 				"No",
@@ -196,17 +355,85 @@ q18 = {
 
 q31 = {
 	"id" : 31,
-	"Title" : "Have you led or are you planning actions to optimize your infrastructure? Especially :",
 	"type" : 5,
-	"questions" : [
-					"Suspending network equipment",
-					"Pooling physical equipment",
-					"Uninstalling unnecessary infrastructure",
-					"Traceability of material elements (CMDB)",
-					"The correct sizing of the servers in relation to their use",
-					"Give priority to ASHRAE 2 compatible equipment",
-					"A procedure for provisioning and de-provisioning data-processing equipment in datacenters"
-				],
+	"questions" : "Have you led or are you planning actions to optimize your infrastructure? Especially :",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q32 = {
+	"id" : 32,
+	"type" : 5,
+	"question" : "Suspending network equipment",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q33 = {
+	"id" : 33,
+	"type" : 5,
+	"question" : "Pooling physical equipment",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q34 = {
+	"id" : 34,
+	"type" : 5,
+	"question" : "Uninstalling unnecessary infrastructure",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q35 = {
+	"id" : 35,
+	"type" : 5,
+	"question" : "Traceability of material elements (CMDB)",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q36 = {
+	"id" : 36,
+	"type" : 5,
+	"question" : "The correct sizing of the servers in relation to their use",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q37 = {
+	"id" : 37,
+	"type" : 5,
+	"question" : "Give priority to ASHRAE 2 compatible equipment",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q38 = {
+	"id" : 38,
+	"type" : 5,
+	"question" : "A procedure for provisioning and de-provisioning data-processing equipment in datacenters",
 	"column" : [
 				"Yes",
 				"No",
@@ -334,21 +561,129 @@ q49 = {
 
 q50 = {
 	"id" : 50,
-	"title" : "Do you have those equipments in your compagny: (Used: equipment used in the business activity ; Not used functional: equipment in working order but no more used by the company (stored) ; Neither used nor functional: out of service equipment (HS) waiting for end of life treatment)",
 	"type" : 5,
-	"question" : [
-				"Fixed stations, workstations",
-				"Laptops, digital tablets",
-				"Small printers (<15kg, potentially used by a household)",
-				"Flat screen monitors",
-				"Other flat screens (TV, projection screen, digital board ...)",
-				"CRT monitors (monitors or other)",
-				"Video projectors",
-				"Mobile phones",
-				"Fixed telephones (standalone not connected to such a standard)",
-				"Digital cameras",
-				"Hard Disk Devices, Storage, Backup"
-				],
+	"question" : "Do you have those equipments in your compagny: (Used: equipment used in the business activity ; Not used functional: equipment in working order but no more used by the company (stored) ; Neither used nor functional: out of service equipment (HS) waiting for end of life treatment)",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q51 = {
+	"id" : 51,
+	"type" : 5,
+	"question" : "Fixed stations, workstations",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q52 = {
+	"id" : 52,
+	"type" : 5,
+	"question" : "Laptops, digital tablets",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q53 = {
+	"id" : 53,
+	"type" : 5,
+	"question" : "Small printers (<15kg, potentially used by a household)",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q54 = {
+	"id" : 54,
+	"type" : 5,
+	"question" : "Flat screen monitors",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q55 = {
+	"id" : 55,
+	"type" : 5,
+	"question" : "Other flat screens (TV, projection screen, digital board ...)",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q56 = {
+	"id" : 56,
+	"type" : 5,
+	"question" : "CRT monitors (monitors or other)",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q57 = {
+	"id" : 57,
+	"type" : 5,
+	"question" : "Video projectors",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q58 = {
+	"id" : 58,
+	"type" : 5,
+	"question" : "Mobile phones",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q59 = {
+	"id" : 59,
+	"type" : 5,
+	"question" : "Fixed telephones (standalone not connected to such a standard)",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q60 = {
+	"id" : 60,
+	"type" : 5,
+	"question" : "Digital cameras",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q61 = {
+	"id" : 61,
+	"type" : 5,
+	"question" : "Hard Disk Devices, Storage, Backup",
 	"column" : [
 				"Used",
 				"Not used functional",
@@ -368,22 +703,81 @@ q62 = {
 
 q63 = {
 	"id" : 63,
-	"title" : "Regarding other devices, do you have in your company: (Used: equipment used in the business activity ; Not used functional: equipment in working order but no more used by the company (stored) ; Neither used nor functional: out of service equipment (HS) waiting for end of life treatment)",
 	"type" : 5,
-	"question" : [
-				"Keyboards",
-				"Mouse",
-				"Graphic tablets",
-				"Scanners",
-				"Speakers",
-				"Office automation"
-				],
+	"question" : "Regarding other devices, do you have in your company: (Used: equipment used in the business activity ; Not used functional: equipment in working order but no more used by the company (stored) ; Neither used nor functional: out of service equipment (HS) waiting for end of life treatment)",
 	"column" : [
 				"Used",
 				"Not used functional",
 				"Neither used nor functional"
 				]
 	}
+
+q64 = {
+	"id" : 64,
+	"type" : 5,
+	"question" : "Keyboards",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q65 = {
+	"id" : 65,
+	"type" : 5,
+	"question" : "Mouse",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q66 = {
+	"id" : 66,
+	"type" : 5,
+	"question" : "Graphic Tablets",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q67 = {
+	"id" : 67,
+	"type" : 5,
+	"question" : "Scanners",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q68 = {
+	"id" : 68,
+	"type" : 5,
+	"question" : "Speakers",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
+q69 = {
+	"id" : 69,
+	"type" : 5,
+	"question" : "Office Automation",
+	"column" : [
+				"Used",
+				"Not used functional",
+				"Neither used nor functional"
+				]
+	}
+
 
 q70 = {
 	"id" : 70,
@@ -477,14 +871,52 @@ q77 = {
 
 q78 = {
 	"id" : 78,
-	"title" : "Are your printers set by default in eco mode? Especially :",
 	"type" : 5,
-	"question" : [
-				"Energy saving (Automatic standby)",
-				"Black and white by default",
-				"Default duplex",
-				"Default draft mode"
-				],
+	"question" : "Are your printers set by default in eco mode? Especially :",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q79 = {
+	"id" : 79,
+	"type" : 5,
+	"question" : "Energy saving (Automatic standby)",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q80 = {
+	"id" : 80,
+	"type" : 5,
+	"question" : "Black and white by default",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q81 = {
+	"id" : 81,
+	"type" : 5,
+	"question" :"Default duplex",
+	"column" : [
+				"Yes",
+				"No",
+				"I don't know"
+				]
+	}
+
+q82 = {
+	"id" : 82,
+	"type" : 5,
+	"question" : "Default draft mode",
 	"column" : [
 				"Yes",
 				"No",
@@ -545,13 +977,14 @@ q87 = {
 	"id" : 87,
 	"question" : "Do you choose certified paper?",
 	"type" : 7,
+	"textfield" : [4],
 	"answer" : [
 				"Yes, FSC",
 				"Yes, PEFC",
 				"Yes, Blue Angel",
 				"Yes, European Label",
-				"I'm not paying attention",
-				"Yes, other"
+				"Yes, other",
+				"I'm not paying attention"
 				]
 	}
 
@@ -566,7 +999,7 @@ q88 = {
 				]
 }
 
-liste_question = [q1, q2, q3, q4, q5, q6, q6, q11, q12, q13, q14, q15, q16, q17, q18, q31, q39, q40, q41, q42, q43, q44, q45, q46, q47, q48, q49, q50, q62, q63, q70, q71, q72, q73, q74, q75, q76, q77, q78, q83, q84, q85, q86, q87, q88]
+liste_question = [q1, q2, q3, q4, q5, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34, q35, q36, q37, q38, q39, q40, q41, q42, q43, q44, q45, q46, q47, q48, q49, q50, q51, q52, q53, q54, q55, q56, q57, q58, q59, q60, q61, q62, q63, q64, q65, q66, q67, q68, q69, q70, q71, q72, q73, q74, q75, q76, q77, q78, q79, q80, q81, q82, q83, q84, q85, q86, q87, q88]
 
 def goto(id_q, rep=''):
 	if id_q == 0:
@@ -635,7 +1068,7 @@ def print_q(id_q, html):
 #Type 1 code
 	if liste_question[id_q-1]["type"] == 1:
 		# Begin of html form
-		html="""
+		html +="""
 			<h2>
 			"""
 		html += "id: "+str(liste_question[id_q-1]["id"])+" "+liste_question[id_q-1]["question"]
@@ -649,10 +1082,11 @@ def print_q(id_q, html):
 			html += '" id="' + str(liste_question[id_q-1]["id"]) + str(id) + '" required/>'
 			html += '<label for="' + str(id) + '">' + i + '</label>'
 		html+="</p>"
+		return html
 
 #Type 2 code
 	elif liste_question[id_q]["type"] == 2:
-		html = """
+		html += """
 			<form method="post">
 			<div id="type2" class="container">
 			<h2>
@@ -665,62 +1099,65 @@ def print_q(id_q, html):
 				"""
 		html += liste_question[id_q-1]["question"]
 		html += """" placeholder="Answer..." required/></p></div>"""
+		return html
+
 	#Type 3 code
 	elif liste_question[id_q]["type"] == 3:
-		answer_list = current_question["answer"]
-		text_answer = current_quesion["textfield"]
+		answer_list = liste_question[id_q]["answer"]
+		text_answer = liste_question[id_q]["textfield"]
 
-		html = """<h2>
+		html += """<h2>
 			"""
-		html += current_question["question"]
+		html += liste_question[id_q]["question"]
 		html += "</h2>"
 		for i in answer_list:
 			html += """
 					<p>
-					<input onclick="resetTxtField(idTxtFieldAssocie)"
+					<input onclick="resetTxtField(
+					""" + str(text_answer) + """	)"
 					type="radio"
 					name="
 					"""
-			html += i
+			html += str(liste_question[id_q]["id"])
 			html += """
 					"
 					value="
 					"""
-			html += i + ":" + answer_list[i]
+			html += str(liste_question[id_q]["id"]) + ":" + str(answer_list.index(i))
 			html += """
 					"
 					id="
 					"""
-			html += answer_list[i]
+			html += str(answer_list.index(i))
 			html += """
 					" required/>
 					<label for="
 					"""
-			html += answer_list[i]
+			html += str(answer_list.index(i))
 			html += """
 					">
 					"""
-			html += answer_list[i]
+			html += str(answer_list.index(i))
 			html += "</label>"
 			if i in text_answer :
 				html += """
-				<input onclick="resetRadioFocus(this.id)"
+				<input onclick="resetFocus(""" + str(answer_list.index(i)) + """)"
 				id="
 				"""
-				html += answer_list[i]
+				html += str(answer_list.index(i))
 				html += """
-					   :textill" type="text" name="other"/>
+					   :textfill" type="text" name="other"/>
 						"""
 			html += "</p>"
 
 		html += "</div>"
-
+		return html
 
 # Type code 4
 
 	elif liste_question[id_q]["type"] == 4:
 
-		html="""
+		html +="""
 			<form method="post" action="">
 			<div id="type4" class="container">
 			<h2>
@@ -730,106 +1167,162 @@ def print_q(id_q, html):
 
 		for i in liste_question[id_q-1]["answer"]:
 			id = liste_question[id_q-1].index(i)
-			html +='<input type="checkbox" name=' + i
+			html +='<input type="checkbox" name=' + i + "[]"
 			html += 'value=' + liste_question[id_q-1]["id"] + str(id)
 			html += 'id="' + str(id) + '"/>'
 			html += '<label for=' + str(id) + '>' + i + '</label>'
 			html+="</p>"
-
+		return html
 #Code 5
 	elif liste_question[id_q]["type"] == 5:
 		question_list = liste_question[id_q-1]["question"]
 		answer_list = liste_question[id_q-1]["column"]
 
-		html = """
+		html += """
 			<div id="type5" class="container">
 			<h2>{That is the title}</h2>
 			<table style="width:100%">
 			"""
-
-		for i in question_list:
-			html +="""
-				<tr>
-				<td><h2>
+		html +="""
+			<tr>
+			<td><h2>
 			"""
-			html += liste_question[id_q-1]["title"]
-			html += "</h2></td>"
-			for j in answer_list:
-				html += """
-						<td>
-						<input type="radio"
-						name="
-						"""
-				html += int(liste_question[id_q-1]["id"] + i + 1)
-				html += """
-						"
-						value = "
-						"""
-				html += int(liste_question[id_q-1]["id"] + i + 1) + ":" + answer_list[j] + '"'
-				html += """
-						id="
-						"""
-				html += answer_list[j] + '"'
-				html += """
-						/>
-						<label for="
-						"""
-				html += answer_list[j] + '"'
-				html += ">" + answer_list[j] + "</label></td>"
+		html += liste_question[id_q-1]["title"]
+		html += "</h2></td>"
+		for j in answer_list:
+			html += """
+					<td>
+					<input type="radio"
+					name="
+					"""
+			html += str(liste_question) + '"'
+			html += """
+					value = "
+					"""
+
+			html += str(liste_question[id_q-1]["id"]) + ":" + str(answer_list.index(j)) + '"'
+			html += """
+					id="
+					"""
+			html += str(answer_list.index(j)) + '"'
+			html += """
+					/>
+					<label for="
+					"""
+			html += str(answer_list.index(j)) + '"'
+			html += ">" + str(answer_list.index(j)) + "</label></td>"
 			html += "</tr>"
 			html += "</table></div>"
-
+		return html
  #Code type 6
 	elif liste_question[id_q]["type"] == 6:
 		question_list = liste_question[id_q-1]["question"]
 		answer_list = liste_question[id_q-1]["column"]
 
-		html = """
+		html += """
 			<div id="type5" class="container">
 			<h2>{That is the title}</h2>
 			<table style="width:100%">
 			"""
 
-		for i in question_list:
-			html +="""
-				<tr>
-				<td><h2>
-			"""
-			html += liste_question[id_q-1]["title"]
-			html += "</h2></td>"
-			for j in answer_list:
-				html += """
-						<td>
-						<input type="checkbox"
-						name="
-						"""
-				html += int(liste_question[id_q-1]["id"] + i + 1)
-				html += """
-						"
-						value = "
-						"""
-				html += int(liste_question[id_q-1]["id"] + i + 1) + ":" + answer_list[j] + '"'
-				html += """
-						id="
-						"""
-				html += answer_list[j] + '"'
-				html += """
-						/>
-						<label for="
-						"""
-				html += answer_list[j] + '"'
-				html += ">" + answer_list[j] + "</label></td>"
-			html += "</tr>"
+		html +="""
+			<tr>
+			<td><h2>
+		"""
+		html += liste_question[id_q-1]["title"]
+		html += "</h2></td>"
+		for j in answer_list:
+			html += """
+					<td>
+					<input type="checkbox"
+					name="
+					"""
+			html += str(liste_question[id_q-1]["id"] + i + 1) + '"'
+			html += """
+					value = "
+					"""
+			html += str(liste_question[id_q-1]["id"] + i + 1) + ":" + str(answer_list.index(j)) + '"'
+			html += """
+					id="
+					"""
+			html += str(answer_list.index(j)) + '"'
+			html += """
+					/>
+					<label for="
+					"""
+			html += str(answer_list.index(j)) + '"'
+			html += ">" + str(answer_list.index(j)) + "</label></td>"
+		html += "</tr>"
 		html += "</table></div>"
-
+		return html
 
 	elif liste_question[id_q]["type"] == 7:
-		pass
+		answer_list = liste_question[id_q-1]["answer"]
+		text_answer = liste_question[id_q-1]["textfield"]
+
+		html += """
+		    <div id="type7" class="container">
+		    <h2>
+		    """
+		html += liste_question[id_q-1]["question"]
+		html += "</h2>"
+		for i in answer_list:
+		    html += """
+		            <p>
+		            <input onclick="resetTxtField(['
+		            """
+		    if len(text_answer) == 1:
+		        html += text_answer[0]
+		    else :
+		        for j in text_answer-1:
+		            html += text_answer[j]+ "','"
+		        html += text_answer[len(text_answer)+1]
+		    html += """
+		            '])"
+		            type="checkbox"
+		            name="
+		            """
+		    html += liste_question[id_q-1]["id"]
+		    html += """
+		            []"
+		            value="
+		            """
+		    html += liste_question[id_q-1]["id"] + ":" + i
+		    html += """
+		            "
+		            id="
+		            """
+		    html += i
+		    html += """
+		            " required/>
+		            <label for="
+		            """
+		    html += answer_list[i]
+		    html += "</label>"
+		    if i in text_answer :
+		        html += """
+		        <input onclick="setFocus('
+		        """
+		        html += i
+		        html += """
+		            ')"
+		            id="
+		            """
+		        html += i
+		        html += """
+		               :textfill" type="text" name="other"/>
+		                """
+		    html += "</p>"
+
+		html += "</div>"
+
+		return html
+
 
 #Type 8
 	elif liste_question[id_q]["type"] == 8:
 		answer_list = liste_question[id_q-1]["answer"]
-		html = """
+		html += """
 			<div id="type8" class="container">
 			<h2>
 			"""
@@ -844,7 +1337,7 @@ def print_q(id_q, html):
 			html += """
 					">
 					"""
-			html += answer_list[i]
+			html += str(answer_list[i])
 			html += """
 					</label>
 					<input type="text"
@@ -857,22 +1350,27 @@ def print_q(id_q, html):
 					</p>
 					"""
 		html += "</div>"
-
-	return html
+		return html
 
 
 def parcours_q(id_debut):
+	liste_choix_deter = [4, 12, 13, 39, 62]
 	html = display_intro_header()
-	for i in range(id_debut, 87):
-		if not i in liste_choix_deter:
-			html += print_q(i+1, html)
-		else:
-			break
-	print(html+display_out_footer())
+
+
+	for i in range(id_debut, len(liste_question)):
+		if i > 4:
+			if not i in liste_choix_deter:
+				print(i)
+				html += print_q(i+1, html)
+			else:
+				print("break")
+
+
+	return html+display_out_footer()
 
 def recup_valeurs():
 	liste_tempo_csv = []
-	form = cgi.FieldStorage()
 
 	id_rand = str(random.randrange(10000000000000, 99999999999999))
 	liste_tempo_csv.append(id_rand)
@@ -887,7 +1385,7 @@ def recup_valeurs():
 		# print('ready to write')
 
 		s = ';'.join(liste_tempo_csv)
-		print(s)
+#		print(s)
 
 		fichier = open('/var/www/html/cgi-bin/save_form.csv', 'w')
 		fichier.write(str(s))
@@ -897,10 +1395,9 @@ def recup_valeurs():
 		idReponse = int(liste_tempo_csv[len(liste_tempo_csv)-1])
 		mareponse = str(liste_question[valeur]["answer"][idReponse])
 
-		print("ma prochaine question a afficher : " + str(goto(valeur+1, mareponse)))
+		# print("ma prochaine question a afficher : " + str(goto(valeur+1, mareponse)))
 
-		parcours_q(goto(valeur+1, mareponse))
-
+		return parcours_q(goto(valeur+1, mareponse))
 	else:
 		pass
 
@@ -908,6 +1405,9 @@ def recup_valeurs():
 #MAIN
 #############
 
-recup_valeurs()
-parcours_q(goto(0,""))
+html = recup_valeurs()
+if not form:
+	html = parcours_q(goto(0,""))
+
+print(html)
 # print(goto(12,"We work with workstation (s), without centralized physical server"))
