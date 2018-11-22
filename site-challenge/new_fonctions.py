@@ -1,9 +1,9 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*
 
-import fonctions
 import cgi
-import json
-import time
+
+liste_choix_deter = [4, 12, 13, 39, 62]
 
 q1 = {
 	"id" : 1,
@@ -31,7 +31,6 @@ q2 = {
 				"1 to 2",
 				"3 to 9",
 				"10 to 49",
-				"50 to 249",
 				"50 to 249",
 				"250 to 4999",
 				"More than 5000"
@@ -563,68 +562,284 @@ q88 = {
 				"No",
 				"I don't know"
 				]
-	}
-
+}
 
 liste_question = [q1, q2, q3, q4, q5, q6, q6, q11, q12, q13, q14, q15, q16, q17, q18, q31, q39, q40, q41, q42, q43, q44, q45, q46, q47, q48, q49, q50, q62, q63, q70, q71, q72, q73, q74, q75, q76, q77, q78, q83, q84, q85, q86, q87, q88]
-intro = True
-go_form = False
+
+def goto(id_q, rep=''):
+    if id_q == 0:
+        return 0
+    elif id_q == 4 and rep == 'Yes':
+        return 5
+    elif id_q == 4 and rep == 'No':
+        return 12
+    elif id_q == 12 and rep == 'We work with workstation (s), without centralized physical server':
+        return 50
+    elif id_q == 12 and rep == 'We have (at least) a centralized physical server':
+        return 13
+    elif id_q == 39 and (rep == 'No' or rep == 'I do not want to answer'):
+        return 42
+    elif id_q == 39 and rep == 'Yes':
+        return 40
+    elif id_q == 62 and rep == 'Yes':
+        return 63
+    elif id_q == 62 and rep == 'No':
+        return 70
 
 
-form = cgi.FieldStorage()
-#On récupère la valeur dans le champ "name" (Si aucune valeur, v vaut None)
-email = form.getvalue("email")
-email = "vavabonneau@gmail.com"
+# Print basic html header code
+def display_intro_header():
 
-if email is not None:
-	#Ouverture de la BDD .json et attribution de la valeur à la variable 'datas'
-	with open('save_form.json', 'r') as f:
-		datas = json.load(f)
-	#On récupère les valeurs des valeurs du fichier /cgi-bin/bdd.json qui est un dictionnaire de dictionnaire via une boucle for
-	for recup_mail in datas.keys():
-	#Si la valeur récupérée est égale à la valeur récupérée dans le champ, on récupère toutes les infos et on incrémente 1 au compteur
-	#afin de créer différents champs dans le dictionnaire si jamais il y a plusieurs résultats
-		if recup_mail == email:
-			intro = False
-			break
+    html = """<!DOCTYPE html>
+    <html lang="fr">
+    <head>
+    <title>Las tortugas: Online SURVEY</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <link rel="icon" type="image/png" href="/img/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+	<form method="post" action="/cgi-bin/new_fonctions.py">
+	<div id="type1" class="container">
+    """
+    return html
 
-		dictionnaire_session = {}
-		dictionnaire_session[email] = {}
-		dictionnaire_rep_form = {}
-		go_form = True
-else:
-	pass
 
-#Page arrivée
-if intro == True and go_form == False:
-	print(fonctions.display_intro_header()+fonctions.display_intro_msg()+fonctions.display_out_footer())
+# Print intro message of the survey
+def display_intro_msg():
+    html = """
+    <h1>Las TORTUGAS SURVEY</h1>
+    <p>Welcome to the online survey of TORTUGAS SURVEY team</p>
+    <p> The main goal of this server is to gather your opinion on the subject XXX</p>
+    <form action="/cgi-bin/index.py" method="post">
+            <input type="text" name="email" value="" />
+            <input type="submit" name="send" value="Rechercher">
+    </form>
+    """
+    return html
 
-#Si email n'est pas déjà entrée
-elif intro == True and go_form == True:
-	#Compteur qui va nous servir à afficher la quextion x
-#	compteur = 0
-	for q in liste_question:
 
-		if q["type"] == 1:
-			html = fonctions.display_question_type_1(q)
-			print(fonctions.display_intro_header()+html+fonctions.display_out_footer())
+# To close the HTML page
+def display_out_footer():
+    html = """<input type="submit" name="next" value="Next"/></div></form></body><footer></footer></html>"""
+    return html
 
-#email déjà entrée, il faut la récupérer et voir où la personne s'est arrêtée
-elif intro == False and go_form == False:
-    for z in liste_question:
-        if z["type"] == 1:
-            print(fonctions.display_intro_header()+fonctions.display_question_type_1(z["question"])+fonctions.display_out_footer())
-        elif z["type"] == 2:
-            print(fonctions.display_intro_header()+fonctions.display_question_type_2(z["question"])+fonctions.display_out_footer())
-        elif z["type"] == 3:
-            print(fonctions.display_intro_header()+fonctions.display_question_type_3(z["question"])+fonctions.display_out_footer())
-        elif z["type"] == 4:
-            print(fonctions.display_intro_header()+fonctions.display_question_type_4(z["question"])+fonctions.display_out_footer())
-        elif z["type"] == 5:
-            print(fonctions.display_intro_header()+fonctions.display_question_type_5(z["question"])+fonctions.display_out_footer())
-        elif z["type"] == 6:
-            print(fonctions.display_intro_header()+fonctions.display_question_type_6(z["question"])+fonctions.display_out_footer())
-        elif z["type"] == 7:
-            print(fonctions.display_intro_header()+fonctions.display_question_type_7(z["question"])+fonctions.display_out_footer())
-        elif z["type"] == 8:
-            print(fonctions.display_intro_header()+fonctions.display_question_type_8(z["question"])+fonctions.display_out_footer())
+
+
+
+def print_q(id_q, html):
+
+#Type 1 code
+    if liste_question[id_q-1]["type"] == 1:
+        # Begin of html form
+        html="""
+		    <h2>
+            """
+        html += "id: "+str(liste_question[id_q-1]["id"])+" "+liste_question[id_q-1]["question"]
+        html += "</h2><p>"
+
+        # Add many radio buttons as needed
+        for i in liste_question[id_q-1]["answer"]:
+            id = liste_question[id_q-1]["answer"].index(i)
+            html +='<input type="radio" name="' + liste_question[id_q-1]["question"]
+            html += '" value="' + str(liste_question[id_q-1]["id"]) + ':' +str(id)
+            html += '" id="' + str(liste_question[id_q-1]["id"]) + str(id) + '" required/>'
+            html += '<label for="' + str(id) + '">' + i + '</label>'
+        html+="</p>"
+
+#Type 2 code
+    elif liste_question[id_q]["type"] == 2:
+        html = """
+            <form method="post">
+            <div id="type2" class="container">
+            <h2>
+            """
+        html += liste_question[id_q-1]["question"]
+        html += """
+                </h2>
+                <p>
+                <input type="text" name=
+                """
+        html += liste_question[id_q-1]["question"]
+        html += """
+            " placeholder="Answer..." required/>
+            </p>
+            </div>
+            """
+#Type 3 code
+    elif liste_question[id_q]["type"] == 3:
+        pass
+
+    elif liste_question[id_q]["type"] == 4:
+
+        html="""
+            <form method="post" action="">
+            <div id="type4" class="container">
+            <h2>
+            """
+        html += liste_question[id_q-1]["question"]
+        html += "</h2><p>"
+
+        for i in liste_question[id_q-1]["answer"]:
+            id = liste_question[id_q-1].index(i)
+            html +='<input type="checkbox" name=' + i
+            html += 'value=' + liste_question[id_q-1]["id"] + str(id)
+            html += 'id="' + str(id) + '"/>'
+            html += '<label for=' + str(id) + '>' + i + '</label>'
+            html+="</p>"
+
+#Code 5
+    elif liste_question[id_q]["type"] == 5:
+
+        question_list = liste_question[id_q-1]["question"]
+        answer_list = liste_question[id_q-1]["column"]
+
+        html = """
+            <div id="type5" class="container">
+            <h2>{That is the title}</h2>
+            <table style="width:100%">
+            """
+
+        for i in question_list:
+            html +="""
+                <tr>
+                <td><h2>
+            """
+            html += liste_question[id_q-1]["title"]
+            html += "</h2></td>"
+            for j in answer_list:
+                html += """
+                        <td>
+                        <input type="radio"
+                        name="
+                        """
+                html += int(liste_question[id_q-1]["id"] + i + 1)
+                html += """
+                        "
+                        value = "
+                        """
+                html += int(liste_question[id_q-1]["id"] + i + 1) + ":" + answer_list[j] + '"'
+                html += """
+                        id="
+                        """
+                html += answer_list[j] + '"'
+                html += """
+                        />
+                        <label for="
+                        """
+                html += answer_list[j] + '"'
+                html += ">" + answer_list[j] + "</label></td>"
+            html += "</tr>"
+            html += "</table></div>"
+
+ #Code type 6
+    elif liste_question[id_q]["type"] == 6:
+        question_list = liste_question[id_q-1]["question"]
+        answer_list = liste_question[id_q-1]["column"]
+
+        html = """
+            <div id="type5" class="container">
+            <h2>{That is the title}</h2>
+            <table style="width:100%">
+            """
+
+        for i in question_list:
+            html +="""
+                <tr>
+                <td><h2>
+            """
+            html += liste_question[id_q-1]["title"]
+            html += "</h2></td>"
+            for j in answer_list:
+                html += """
+                        <td>
+                        <input type="checkbox"
+                        name="
+                        """
+                html += int(liste_question[id_q-1]["id"] + i + 1)
+                html += """
+                        "
+                        value = "
+                        """
+                html += int(liste_question[id_q-1]["id"] + i + 1) + ":" + answer_list[j] + '"'
+                html += """
+                        id="
+                        """
+                html += answer_list[j] + '"'
+                html += """
+                        />
+                        <label for="
+                        """
+                html += answer_list[j] + '"'
+                html += ">" + answer_list[j] + "</label></td>"
+            html += "</tr>"
+        html += "</table></div>"
+
+
+    elif liste_question[id_q]["type"] == 7:
+        pass
+
+#Type 8
+    elif liste_question[id_q]["type"] == 8:
+        answer_list = liste_question[id_q-1]["answer"]
+        html = """
+            <div id="type8" class="container">
+            <h2>
+            """
+        html += liste_question[id_q-1]["question"]
+        html += "</h2>"
+        for i in answer_list:
+            html += """
+                    <p>
+                    <label for="
+                    """
+            html += i
+            html += """
+                    ">
+                    """
+            html += answer_list[i]
+            html += """
+                    </label>
+                    <input type="text"
+                    name="
+                    """
+            html += i
+            html += """
+                    "
+                    placeholder="Answer..." required/>
+                    </p>
+                    """
+        html += "</div>"
+
+    return html
+
+
+def parcours_q(id_debut):
+    html = display_intro_header()
+    for i in range(id_debut, 87):
+        if not i in liste_choix_deter:
+            html += print_q(i+1, html)
+        else:
+            break
+    print(html+display_out_footer())
+
+def recup_valeurs():
+	form = cgi.FieldStorage()
+	if form:
+		idx = 0
+		for i in form:
+			if not form[i].value == "next":
+				idx +=1
+		print(idx-1)
+
+		radio = form.getvalue("")
+	else:
+		print('')
+
+############
+#MAIN
+#############
+
+recup_valeurs()
+parcours_q(goto(0,""))
