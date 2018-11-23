@@ -4,19 +4,18 @@
 import cgi
 
 q1 = {
-    "question": "Êtes-vous un homme ou une femme ?",
+    "id": 0,
+    "question": "Etes-vous un homme ou une femme ?",
     "type": 1,
     "answer": ["Homme", "Femme"]
 }
 
 
 q2 = {
+    "id": 1,
     "question": "Comment vous appelez-vous ?",
     "type": 2
 }
-
-
-liste_q = [q1, q2]
 
 def header():
     html = """<!DOCTYPE html>
@@ -37,21 +36,37 @@ def footer():
     html = """<input type="submit" name="next" value="Next"/></div></form></body><footer></footer></html>"""
     return html
 
-def type_1(dictionnaire_q):
-    html = """<p><form action="/cgi-bin/index.py" method="post">"""
-    html += """<h2>"""+dictionnaire_q["question"]+"""</h2>"""
-    for questions in dictionnaire_q["answer"]:
-        html += """<input type="radio" name='"""+dictionnaire_q["question"]+"""' value='"""+str(dictionnaire_q["answer"].index(questions))+"""' id="lala" required <label for="">"""+questions+"""</label>"""
-    html += """</form></p>"""
+def type_x(dictionnaire_q):
+    if dictionnaire_q["type"] == 1:
+        html = """<p><form action="/cgi-bin/index.py" method="post">"""
+        html += """<h2>"""+dictionnaire_q["question"]+"""</h2>"""
+        for questions in dictionnaire_q["answer"]:
+            html += """<input type="radio" name='"""+dictionnaire_q["question"]+"""' value='"""+str(dictionnaire_q["id"])+""":"""+str(dictionnaire_q["answer"].index(questions))+"""' id="lala" required <label for="">"""+questions+"""</label></p>"""
+    elif dictionnaire_q["type"] == 2:
+        html = """<p><form action="/cgi-bin/index.py" method="post">"""
+        html += """<h2>"""+dictionnaire_q["question"]+"""</h2>"""
+        html += """<input type="text" name='"""+dictionnaire_q["question"]+"""' placeholder="Answer..." required/><p>"""
 
     return html
 
 form = cgi.FieldStorage()
+liste_q = [q1, q2]
 
 if form:
-    print(form)
-    #html = header()+type_1(liste_q[id_req_pre])+footer()
+    # dict_tempo_csv = {}
+    list_tempo = []
+    # for i in form:
+    #     dict_tempo_csv[i] = form[i].value.split(':')
+    # dict_tempo_csv.pop("next")
+
+    for i in form:
+        list_tempo.append(i)
+        list_tempo.append(form[i].value.split(':'))
+
+    id_req_pre = int(list_tempo[1][0])
+
+    html = header()+type_x(liste_q[id_req_pre+1])+footer()
 else:
-    html = header()+type_1(liste_q[0])+footer()
+    html = header()+type_x(liste_q[0])+footer()
 
 print(html)
