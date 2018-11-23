@@ -1,18 +1,11 @@
 #!/usr/bin/python3
 # coding=utf-8
-
-import cgi
-import cgitb
-import csv
-import random
-# cgi.test()
-cgitb.enable()
-
-form = cgi.FieldStorage()
+from cgi import FieldStorage
+from random import randrange
+form = FieldStorage()
 q0 = {
 	"id" : 0
 	}
-
 q1 = {
 	"id" : 1,
 	"question" : "In which sector of activity is your company active? (linked with your APE code)",
@@ -29,7 +22,6 @@ q1 = {
 				"Real estate"
 				]
 	}
-
 q2 = {
 	"id" : 2,
 	"question" : "What is the number of employees in your company on 18/12/31?",
@@ -44,7 +36,6 @@ q2 = {
 				"More than 5000"
 				]
 	}
-
 q3 = {
 	"id" : 3,
 	"question" : "What is the turnover of your company in the last fiscal year? (or annual budget for Public sector)",
@@ -58,7 +49,6 @@ q3 = {
 				"More than 50 M€"
 				]
 	}
-
 q4 = {
 	"id" : 4,
 	"question" : "Do you develop digital services for internal or external use (sales to customers)?",
@@ -68,14 +58,12 @@ q4 = {
 				"No"
 				]
 	}
-
 q5 = {
 	"id" : 5,
 	"question" : "What is the number of users of your digital services?",
 	"type" : 2,
 	"answer" : "text"
 	}
-
 q6 = {
 	"id" : 6,
 	"type" : 5,
@@ -86,7 +74,6 @@ q6 = {
 				"I don't know"
 				]
 	}
-
 q7 = {
 	"id" : 7,
 	"type" : 5,
@@ -97,7 +84,6 @@ q7 = {
 				"I don't know"
 				]
 	}
-
 q8 = {
 	"id" : 8,
 	"type" : 5,
@@ -108,7 +94,6 @@ q8 = {
 				"I don't know"
 				]
 	}
-
 q9 = {
 	"id" : 9,
 	"type" : 5,
@@ -119,7 +104,6 @@ q9 = {
 				"I don't know"
 				]
 	}
-
 q10 = {
 	"id" : 10,
 	"type" : 5,
@@ -130,7 +114,6 @@ q10 = {
 				"I don't know"
 				]
 	}
-
 q11 = {
 	"id" : 11,
 	"question" : "What is the overall storage volume of your corporate data (centralized on external hard drives, centralized server, NAS, SAN ...) in Terabytes (TB) useful?",
@@ -142,7 +125,6 @@ q11 = {
 				"TB"
 				]
 	}
-
 q12 = {
 	"id" : 12,
 	"question" : "Do you have a server or do you only work with one or more workstations?",
@@ -152,7 +134,6 @@ q12 = {
 				"We have (at least) a centralized physical server"
 				]
 	}
-
 q13 = {
 	"id" : 13,
 	"question" : "Do you have a dedicated room, simple room or cupboard with bay dedicated to your IT infrastructure?",
@@ -162,7 +143,6 @@ q13 = {
 				"A dedicated room"
 				]
 	}
-
 q14 = {
 	"id" : 14,
 	"question" : "Is your computer room in house or at a host?",
@@ -173,7 +153,6 @@ q14 = {
 				"Non-adhering Host of the European Code of Conduct for Data Centers"
 				]
 	}
-
 q15 = {
 	"id" : 15,
 	"question" : "What is the total area of your computer rooms (excluding technical infrastructure *)? (in m2)",
@@ -185,7 +164,6 @@ q15 = {
 				"I do not want to answer"
 				]
 	}
-
 q16 = {
 	"id" : 16,
 	"question" : "Do you know the PUE of your Data Center? (PUE : Power Usage Effectiveness)",
@@ -197,7 +175,6 @@ q16 = {
 				"I don't know"
 				]
 	}
-
 q17 = {
 	"id" : 17,
 	"question" : "What is the rate of charge or energy use of your computer rooms? (Rate = Electrical power absorbed by your IT equipment, divided by room capacity in kW, then multiplied by 100 (used energy / available energy))",
@@ -209,7 +186,6 @@ q17 = {
 				"I don't know"
 				]
 	}
-
 q18 = {
 	"id" : 18,
 	"type" : 5,
@@ -220,7 +196,6 @@ q18 = {
 				"I don't know"
 				]
 	}
-
 q19 = {
 	"id" : 19,
 	"type" : 5,
@@ -231,7 +206,6 @@ q19 = {
 				"I don't know"
 				]
 	}
-
 q20 = {
 	"id" : 20,
 	"type" : 5,
@@ -242,7 +216,6 @@ q20 = {
 				"I don't know"
 				]
 	}
-
 q21 = {
 	"id" : 21,
 	"type" : 5,
@@ -253,7 +226,6 @@ q21 = {
 				"I don't know"
 				]
 	}
-
 q22 = {
 	"id" : 22,
 	"type" : 5,
@@ -264,7 +236,6 @@ q22 = {
 				"I don't know"
 				]
 	}
-
 q23 = {
 	"id" : 23,
 	"type" : 5,
@@ -275,7 +246,6 @@ q23 = {
 				"I don't know"
 				]
 	}
-
 q24 = {
 	"id" : 24,
 	"type" : 5,
@@ -286,7 +256,6 @@ q24 = {
 				"I don't know"
 				]
 	}
-
 q25 = {
 	"id" : 25,
 	"type" : 5,
@@ -297,7 +266,6 @@ q25 = {
 				"I don't know"
 				]
 	}
-
 q26 = {
 	"id" : 26,
 	"type" : 5,
@@ -308,7 +276,6 @@ q26 = {
 				"I don't know"
 				]
 	}
-
 q27 = {
 	"id" : 27,
 	"type" : 5,
@@ -319,7 +286,6 @@ q27 = {
 				"I don't know"
 				]
 	}
-
 q28 = {
 	"id" : 28,
 	"type" : 5,
@@ -330,7 +296,6 @@ q28 = {
 				"I don't know"
 				]
 	}
-
 q29 = {
 	"id" : 29,
 	"type" : 5,
@@ -341,7 +306,6 @@ q29 = {
 				"I don't know"
 				]
 	}
-
 q30 = {
 	"id" : 30,
 	"type" : 5,
@@ -352,8 +316,6 @@ q30 = {
 				"I don't know"
 				]
 	}
-
-
 q31 = {
 	"id" : 31,
 	"type" : 5,
@@ -364,7 +326,6 @@ q31 = {
 				"I don't know"
 				]
 	}
-
 q32 = {
 	"id" : 32,
 	"type" : 5,
@@ -375,7 +336,6 @@ q32 = {
 				"I don't know"
 				]
 	}
-
 q33 = {
 	"id" : 33,
 	"type" : 5,
@@ -386,7 +346,6 @@ q33 = {
 				"I don't know"
 				]
 	}
-
 q34 = {
 	"id" : 34,
 	"type" : 5,
@@ -397,7 +356,6 @@ q34 = {
 				"I don't know"
 				]
 	}
-
 q35 = {
 	"id" : 35,
 	"type" : 5,
@@ -408,7 +366,6 @@ q35 = {
 				"I don't know"
 				]
 	}
-
 q36 = {
 	"id" : 36,
 	"type" : 5,
@@ -419,7 +376,6 @@ q36 = {
 				"I don't know"
 				]
 	}
-
 q37 = {
 	"id" : 37,
 	"type" : 5,
@@ -430,7 +386,6 @@ q37 = {
 				"I don't know"
 				]
 	}
-
 q38 = {
 	"id" : 38,
 	"type" : 5,
@@ -441,7 +396,6 @@ q38 = {
 				"I don't know"
 				]
 	}
-
 q39 = {
 	"id" : 39,
 	"question" : "Do you know the number of physical servers and virtual servers in your company?",
@@ -452,21 +406,18 @@ q39 = {
 				"Yes"
 				]
 	}
-
 q40 = {
 	"id" : 40,
 	"question": "How many physical servers do you have?",
 	"type": 2,
 	"answer": "text"
 	}
-
 q41 = {
 	"id" : 41,
 	"question": "How many virtual servers do you have?",
 	"type": 2,
 	"answer": "text"
 	}
-
 q42 = {
 	"id" : 42,
 	"question": "How many virtual servers do you have?",
@@ -479,7 +430,6 @@ q42 = {
 			"I don't know"
 			]
 	}
-
 q43 = {
 	"id" : 43,
 	"question": "What will be the evolution of your number of virtual servers for 2019? (in% or quantity)",
@@ -492,7 +442,6 @@ q43 = {
 			"I don't know"
 			]
 	}
-
 q44 = {
 	"id" : 44,
 	"question" : "Has your company appointed a Green IT Manager / Digital Manager?",
@@ -503,7 +452,6 @@ q44 = {
 				"I don't know"
 				]
 	}
-
 q45 = {
 	"id" : 45,
 	"question" : "Do you have a responsible digital strategy broken down into an action plan?",
@@ -514,7 +462,6 @@ q45 = {
 				"I don't know"
 				]
 	}
-
 q46 = {
 	"id" : 46,
 	"question" : "Is Green IT a topic integrated into your CSR strategy?",
@@ -525,7 +472,6 @@ q46 = {
 				"I don't know"
 				]
 	}
-
 q47 = {
 	"id" : 47,
 	"question" : "Do you regularly evaluate the environmental impacts of your information system?",
@@ -537,7 +483,6 @@ q47 = {
 				"I do not know"
 				]
 	}
-
 q48 = {
 	"id" : 48,
 	"question" : "Do you have a team of competent referees on the topics of Green IT?",
@@ -548,7 +493,6 @@ q48 = {
 				"I don't know"
 				]
 	}
-
 q49 = {
 	"id" : 49,
 	"question" : "Have you integrated Green IT into your business strategy",
@@ -559,7 +503,6 @@ q49 = {
 				"I don't know"
 				]
 	}
-
 q50 = {
 	"id" : 50,
 	"type" : 5,
@@ -570,7 +513,6 @@ q50 = {
 				"Neither used nor functional"
 				]
 	}
-
 q51 = {
 	"id" : 51,
 	"type" : 5,
@@ -581,7 +523,6 @@ q51 = {
 				"Neither used nor functional"
 				]
 	}
-
 q52 = {
 	"id" : 52,
 	"type" : 5,
@@ -592,7 +533,6 @@ q52 = {
 				"Neither used nor functional"
 				]
 	}
-
 q53 = {
 	"id" : 53,
 	"type" : 5,
@@ -603,7 +543,6 @@ q53 = {
 				"Neither used nor functional"
 				]
 	}
-
 q54 = {
 	"id" : 54,
 	"type" : 5,
@@ -614,7 +553,6 @@ q54 = {
 				"Neither used nor functional"
 				]
 	}
-
 q55 = {
 	"id" : 55,
 	"type" : 5,
@@ -625,7 +563,6 @@ q55 = {
 				"Neither used nor functional"
 				]
 	}
-
 q56 = {
 	"id" : 56,
 	"type" : 5,
@@ -636,7 +573,6 @@ q56 = {
 				"Neither used nor functional"
 				]
 	}
-
 q57 = {
 	"id" : 57,
 	"type" : 5,
@@ -647,7 +583,6 @@ q57 = {
 				"Neither used nor functional"
 				]
 	}
-
 q58 = {
 	"id" : 58,
 	"type" : 5,
@@ -658,7 +593,6 @@ q58 = {
 				"Neither used nor functional"
 				]
 	}
-
 q59 = {
 	"id" : 59,
 	"type" : 5,
@@ -669,7 +603,6 @@ q59 = {
 				"Neither used nor functional"
 				]
 	}
-
 q60 = {
 	"id" : 60,
 	"type" : 5,
@@ -680,7 +613,6 @@ q60 = {
 				"Neither used nor functional"
 				]
 	}
-
 q61 = {
 	"id" : 61,
 	"type" : 5,
@@ -691,7 +623,6 @@ q61 = {
 				"Neither used nor functional"
 				]
 	}
-
 q62 = {
 	"id" : 62,
 	"question" : "Do you have other devices in your company? (Keyboards, mouse, graphic tablets, scanners, microphones, speakers, office equipment ...)",
@@ -701,7 +632,6 @@ q62 = {
 				"No"
 				]
 	}
-
 q63 = {
 	"id" : 63,
 	"type" : 5,
@@ -712,7 +642,6 @@ q63 = {
 				"Neither used nor functional"
 				]
 	}
-
 q64 = {
 	"id" : 64,
 	"type" : 5,
@@ -723,7 +652,6 @@ q64 = {
 				"Neither used nor functional"
 				]
 	}
-
 q65 = {
 	"id" : 65,
 	"type" : 5,
@@ -734,7 +662,6 @@ q65 = {
 				"Neither used nor functional"
 				]
 	}
-
 q66 = {
 	"id" : 66,
 	"type" : 5,
@@ -745,7 +672,6 @@ q66 = {
 				"Neither used nor functional"
 				]
 	}
-
 q67 = {
 	"id" : 67,
 	"type" : 5,
@@ -756,7 +682,6 @@ q67 = {
 				"Neither used nor functional"
 				]
 	}
-
 q68 = {
 	"id" : 68,
 	"type" : 5,
@@ -767,7 +692,6 @@ q68 = {
 				"Neither used nor functional"
 				]
 	}
-
 q69 = {
 	"id" : 69,
 	"type" : 5,
@@ -778,8 +702,6 @@ q69 = {
 				"Neither used nor functional"
 				]
 	}
-
-
 q70 = {
 	"id" : 70,
 	"question" : "Do you know the consumption of your workstation in kWh per year?",
@@ -791,7 +713,6 @@ q70 = {
 				]
 
 	}
-
 q71 = {
 	"id" : 71,
 	"question" : "Do you track the energy consumption of your compagny activities?",
@@ -802,7 +723,6 @@ q71 = {
 				"I don't know"
 				]
 	}
-
 q72 = {
 	"id" : 72,
 	"question" : "Do you know the share of IT and IT equipment in your company's total energy consumption?",
@@ -813,7 +733,6 @@ q72 = {
 				"No"
 				]
 	}
-
 q73 = {
 	"id" : 73,
 	"question" : "Have you set up a power management system? (automatic shutdown / shutdown of workstations)",
@@ -824,7 +743,6 @@ q73 = {
 				"I don't know"
 				]
 	}
-
 q74 = {
 	"id" : 74,
 	"question" : "Do you use copiers from a repackaging industry (second-hand / second-hand)?",
@@ -835,7 +753,6 @@ q74 = {
 				"I don't know"
 				]
 	}
-
 q75 = {
 	"id" : 75,
 	"question" : "Do you consolidate individual printers to shared printers?",
@@ -846,7 +763,6 @@ q75 = {
 				"I don't know"
 				]
 	}
-
 q76 = {
 	"id" : 76,
 	"question" : "Have you set up an identification system on printers (to trigger printing)?",
@@ -857,7 +773,6 @@ q76 = {
 				"I don't know"
 				]
 	}
-
 q77 = {
 	"id" : 77,
 	"question" : "What is the average life of your professional copier / MFP *? * MFP Multi Fonction Printer",
@@ -869,7 +784,6 @@ q77 = {
 				"x years (please specify)"
 				]
 	}
-
 q78 = {
 	"id" : 78,
 	"type" : 5,
@@ -880,7 +794,6 @@ q78 = {
 				"I don't know"
 				]
 	}
-
 q79 = {
 	"id" : 79,
 	"type" : 5,
@@ -891,7 +804,6 @@ q79 = {
 				"I don't know"
 				]
 	}
-
 q80 = {
 	"id" : 80,
 	"type" : 5,
@@ -902,7 +814,6 @@ q80 = {
 				"I don't know"
 				]
 	}
-
 q81 = {
 	"id" : 81,
 	"type" : 5,
@@ -913,7 +824,6 @@ q81 = {
 				"I don't know"
 				]
 	}
-
 q82 = {
 	"id" : 82,
 	"type" : 5,
@@ -924,7 +834,6 @@ q82 = {
 				"I don't know"
 				]
 	}
-
 q83 = {
 	"id" : 83,
 	"question" : "What is the number of pages printed / day / employee? (A4 equivalent)",
@@ -937,7 +846,6 @@ q83 = {
 				"I don't know"
 				]
 	}
-
 q84 = {
 	"id" : 84,
 	"question" : "Can you specify the number of cartridges / toners:",
@@ -949,7 +857,6 @@ q84 = {
 				"Toners stored in the average business"
 				]
 	}
-
 q85 = {
 	"id" : 85,
 	"question" : "Do you organize the separate collection of waste cartridges / toners?",
@@ -960,7 +867,6 @@ q85 = {
 				"No no separate collection device is planned"
 				]
 	}
-
 q86 = {
 	"id" : 86,
 	"question" : "Do you prefer the use of recycled paper?",
@@ -973,7 +879,6 @@ q86 = {
 				"I'm not paying attention"
 				]
 	}
-
 q87 = {
 	"id" : 87,
 	"question" : "Do you choose certified paper?",
@@ -988,7 +893,6 @@ q87 = {
 				"I'm not paying attention"
 				]
 	}
-
 q88 = {
 	"id" : 88,
 	"question" : "Do you organize the separate collection of waste paper for recycling?",
@@ -999,33 +903,27 @@ q88 = {
 				"I don't know"
 				]
 	}
-
 liste_question = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34, q35, q36, q37, q38, q39, q40, q41, q42, q43, q44, q45, q46, q47, q48, q49, q50, q51, q52, q53, q54, q55, q56, q57, q58, q59, q60, q61, q62, q63, q64, q65, q66, q67, q68, q69, q70, q71, q72, q73, q74, q75, q76, q77, q78, q79, q80, q81, q82, q83, q84, q85, q86, q87, q88]
-
-
 
 # Print basic html header code
 def display_intro_header():
-
-	html = """<!DOCTYPE html>
+	return """<!DOCTYPE html>
 	<html lang="fr">
 	<head>
 		<title>Las tortugas: Online SURVEY</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="text/html;" />
-		<link rel="icon" type="image/png" href="/img/favicon.png"/>
+		<link rel="icon" href="favicon.ico"/>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 		<form method="post" action="/cgi-bin/new_fonctions.py">
 		<div id="type1" class="container">
 	"""
-	return html
-
 
 # Print intro message of the survey
 def display_intro_msg():
-	html = """
+	return """
 	<h1>Las TORTUGAS SURVEY</h1>
 	<p>Welcome to the online survey of TORTUGAS SURVEY team</p>
 	<p> The main goal of this server is to gather your opinion on the subject XXX</p>
@@ -1034,18 +932,15 @@ def display_intro_msg():
 			<input type="submit" name="send" value="Rechercher">
 	</form>
 	"""
-	return html
-
 
 # To close the HTML page
 def display_out_footer():
-	html = """<input type="submit" name="next" value="Next"/></div></form></body><footer></footer></html>"""
-	return html
+	return """<input type="submit" name="next" value="Next"/></div></form></body><footer></footer></html>"""
 
 def type1(id_q):
 	html = """
 	<div id="type1" class="container">
-		<h2>""" + str(liste_question[id_q-1]["id"])+" "+liste_question[id_q-1]["question"] + """</h2>"""
+		<h2>""" + str(liste_question[id_q-1]["id"])+" "+liste_question[id_q-1]["question"] + "</h2>"
 
 	for i in liste_question[id_q-1]["answer"]:
 		html += """
@@ -1229,7 +1124,7 @@ def type8(id_q):
 	return html
 
 def header():
-	html = """<!DOCTYPE html>
+	return """<!DOCTYPE html>
 	<html lang="fr">
 
 	<head>
@@ -1244,10 +1139,9 @@ def header():
 		<div class="head"></div>
 		<div class="mainContainer">
 	"""
-	return html
 
 def intro():
-	html = """
+	return """
 	<div class="container justify">
 		<h2>Welcome to the survey design4green!</h2>
 		<p>
@@ -1280,21 +1174,16 @@ def intro():
 		</form>
 	</div>
 	"""
-	return html
 
 def startform():
-	html = """<form method="post" action="">"""
-	return html
+	return """<form method="post" action="">"""
 
 def footer(id):
-
 	html = ''
-
 	if id == None:
 		pass
 
 	elif id != None:
-
 		html = """
 					<input class="submit" type="submit" name="submit" value="Continue later"/>
 					<input class="button" type="submit" name="next" value="Next"/>
@@ -1314,15 +1203,12 @@ def footer(id):
 	"""
 	return html
 
-
-
 def afficherFin():
 	html = """<div class="container">
 		<h2>Thank you!</h2>
 		<p>Thank you for your answers. Now, you can download your report.</p>
 	</div>
 </div>"""
-
 	print(html)
 
 def goto(id_q, id_rep):
@@ -1349,12 +1235,11 @@ def goto(id_q, id_rep):
 	# elif id_q == 88:
 	# 	return 89
 
-
 def print_q(id_question, html):
 	if liste_question[id_question-1]["type"] == 0:
 		html = intro()
 
-	if liste_question[id_question-1]["type"] == 1:
+	elif liste_question[id_question-1]["type"] == 1:
 		html = type1(id_question)
 
 	elif liste_question[id_question-1]["type"] == 2:
@@ -1379,7 +1264,6 @@ def print_q(id_question, html):
 		html = type8(id_question)
 	return html
 
-
 def parcours_q(id_debut):
 	liste_choix_deter = [4, 12, 13, 39, 62]
 	html = "" + header() + startform()
@@ -1391,14 +1275,12 @@ def parcours_q(id_debut):
 					break
 		except:
 			afficherFin()
-
 	html += footer(id_debut)
 	return html
 
 def recup_valeurs():
 	liste_tempo_csv = []
-
-	id_rand = str(random.randrange(10000000000000, 99999999999999))
+	id_rand = str(randrange(10000000000000, 99999999999999))
 
 #Si le form n'est pas vide
 	if form:

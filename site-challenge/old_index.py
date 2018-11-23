@@ -137,7 +137,7 @@ q15 = {
 	"type" : 3,
 	"textfield" : [0],
 	"answer" : [
-				"m²"
+				"m²",
 				"I don't know",
 				"I do not want to answer"
 				]
