@@ -130,7 +130,7 @@ q12 = {
 	"question" : "Do you have a server or do you only work with one or more workstations?",
 	"type" : 1,
 	"answer" : [
-				"We work with workstation (s), without centralized physical server",
+				"We work with workstation(s), without centralized physical server",
 				"We have (at least) a centralized physical server"
 				]
 	}
@@ -1141,7 +1141,7 @@ def header():
 def intro():
 	return """
 	<div class="container justify">
-		<h2>Welcome to the survey design4green!</h2>
+		<h2>Welcome to the Design4Green survey!</h2>
 		<p>
 			With the support of ADEME, the Ministry of Ecology, Energy and the Sea and the
 			Ministry of Economy and Finance, the association AGIT (Alliance for Green IT) and
@@ -1168,6 +1168,7 @@ def intro():
 			constitute the most representative sample of the companies in France.
 		</p>
 		<form method="post" action="">
+			<input name="email" type="email" placeholder="Email" required/>
 			<input class="button" name="intro" type="submit" value="Start!"/>
 		</form>
 	</div>
@@ -1296,10 +1297,6 @@ def recup_valeurs():
 						liste_tempo_csv.append(str(question) + ':' + str(reponse))
 				except AttributeError:
 					pass
-			s = liste_tempo_csv
-			fichier = open('/var/www/html/cgi-bin/save_form.csv', 'w')
-			fichier.write(str(s))
-			fichier.close()
 
 			liste_tempo_csv.sort()
 			#ajoute le rand en debut de liste
@@ -1319,6 +1316,8 @@ def recup_valeurs():
 html = recup_valeurs()
 
 if form.getvalue("intro") == "Start!":
+
+	email_renseignee = form.getvalue("email")
 	html = parcours_q(1)
 
 elif form.getvalue("next") != "Next":

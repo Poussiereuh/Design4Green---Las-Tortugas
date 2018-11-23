@@ -64,7 +64,7 @@ button:hover, input[type=submit]:hover{
     opacity: 0.8;
 }
 
-input[type=text]{
+input[type=text], input[type=email]{
     width: 50%;
     padding: 12px 20px;
     box-sizing: border-box;
@@ -72,4 +72,14 @@ input[type=text]{
     border-radius: 4px;
     background-color: #f1f4f6;
     font-family:sans-serif;
+}
+
+@media all and (max-width: 1070){
+	.mainContainer{
+		width: 100%;
+	}
+
+	input[type=text], input[type=email]{
+	    width: 100%;
+	}
 }
