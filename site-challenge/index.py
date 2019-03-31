@@ -2,6 +2,11 @@
 # coding=utf-8
 from cgi import FieldStorage
 from random import randrange
+import json
+import cgitb
+
+cgitb.enable()
+
 form = FieldStorage()
 q0 = {
 	"id" : 0
@@ -41,12 +46,12 @@ q3 = {
 	"question" : "What is the turnover of your company in the last fiscal year? (or annual budget for Public sector)",
 	"type" : 1,
 	"answer" : [
-				"0 to 100K€",
-				"100 to 500 K€",
-				"500 to 2 M€",
-				"2 to 10 M€",
-				"10 to 50 M€",
-				"More than 50 M€"
+				"0 to 100Kâ‚¬",
+				"100 to 500 Kâ‚¬",
+				"500 to 2 Mâ‚¬",
+				"2 to 10 Mâ‚¬",
+				"10 to 50 Mâ‚¬",
+				"More than 50 Mâ‚¬"
 				]
 	}
 q4 = {
@@ -130,7 +135,7 @@ q12 = {
 	"question" : "Do you have a server or do you only work with one or more workstations?",
 	"type" : 1,
 	"answer" : [
-				"We work with workstation (s), without centralized physical server",
+				"We work with workstation(s), without centralized physical server",
 				"We have (at least) a centralized physical server"
 				]
 	}
@@ -159,7 +164,7 @@ q15 = {
 	"type" : 3,
 	"textfield" : [0],
 	"answer" : [
-				"m²"
+				"mÂ²"
 				"I don't know",
 				"I do not want to answer"
 				]
@@ -299,7 +304,7 @@ q28 = {
 q29 = {
 	"id" : 29,
 	"type" : 5,
-	"question" : "The set temperature in the cold corridor remains higher than 24 °",
+	"question" : "The set temperature in the cold corridor remains higher than 24 Â°",
 	"column" : [
 				"Yes",
 				"No",
@@ -904,7 +909,6 @@ q88 = {
 				]
 	}
 liste_question = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25, q26, q27, q28, q29, q30, q31, q32, q33, q34, q35, q36, q37, q38, q39, q40, q41, q42, q43, q44, q45, q46, q47, q48, q49, q50, q51, q52, q53, q54, q55, q56, q57, q58, q59, q60, q61, q62, q63, q64, q65, q66, q67, q68, q69, q70, q71, q72, q73, q74, q75, q76, q77, q78, q79, q80, q81, q82, q83, q84, q85, q86, q87, q88]
-
 # Print basic html header code
 def display_intro_header():
 	return """<!DOCTYPE html>
@@ -917,7 +921,7 @@ def display_intro_header():
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<form method="post" action="/cgi-bin/new_fonctions.py">
+		<form method="post" action="">
 		<div id="type1" class="container">
 	"""
 
@@ -927,7 +931,7 @@ def display_intro_msg():
 	<h1>Las TORTUGAS SURVEY</h1>
 	<p>Welcome to the online survey of TORTUGAS SURVEY team</p>
 	<p> The main goal of this server is to gather your opinion on the subject XXX</p>
-	<form action="/cgi-bin/index.py" method="post">
+	<form action="" method="post">
 			<input type="text" name="email" value="" />
 			<input type="submit" name="send" value="Rechercher">
 	</form>
@@ -940,7 +944,7 @@ def display_out_footer():
 def type1(id_q):
 	html = """
 	<div id="type1" class="container">
-		<h2>""" + str(liste_question[id_q-1]["id"])+" "+liste_question[id_q-1]["question"] + "</h2>"
+		<h2>%s %s</h2>""" %(str(liste_question[id_q-1]["id"]), liste_question[id_q-1]["question"])
 
 	for i in liste_question[id_q-1]["answer"]:
 		html += """
@@ -956,7 +960,7 @@ def type1(id_q):
 	return html
 
 def type2(id_q):
-	html = """
+	return """
 	<div id="type2" class="container">
 	<h2>""" + str(liste_question[id_q-1]["id"]) + " " + str(liste_question[id_q-1]["question"]) + """</h2>
 		<p>
@@ -967,10 +971,9 @@ def type2(id_q):
 		</p>
 	</div>
 	"""
-	return html
 
 def type3(id_q):
-	answer_list = liste_question[id_q-1]["answer"] #tableau des réponses
+	answer_list = liste_question[id_q-1]["answer"] #tableau des rÃ©ponses
 	text_answer = liste_question[id_q-1]["textfield"] #tableau des id des radio button avec textfield
 	resetTxtField = ""
 	for machin in text_answer:
@@ -1170,13 +1173,14 @@ def intro():
 			constitute the most representative sample of the companies in France.
 		</p>
 		<form method="post" action="">
+			<input name="email" type="email" placeholder="Email" required/>
 			<input class="button" name="intro" type="submit" value="Start!"/>
 		</form>
 	</div>
 	"""
 
 def startform():
-	return """<form method="post" action="">"""
+	return """<form method="post" action=""><input name="email" type="hidden" value='""" + str(form.getvalue("email")) + """'/>"""
 
 def footer(id):
 	html = ''
@@ -1279,14 +1283,13 @@ def parcours_q(id_debut):
 	return html
 
 def recup_valeurs():
-	liste_tempo_csv = []
-	id_rand = str(randrange(10000000000000, 99999999999999))
 
 #Si le form n'est pas vide
 	if form:
 		if form.getvalue("intro") == "Start!":
 			html = parcours_q(1)
 		else:
+			email = form.getvalue("email")
 			for i in form:
 				try:
 					if "Next" not in form[i].value.split(':')[0]:
@@ -1295,17 +1298,12 @@ def recup_valeurs():
 							reponse = form[i].value.split(':')[1]
 						except IndexError:
 							pass
-						liste_tempo_csv.append(str(question) + ':' + str(reponse))
+						string_to_write = """ {""" + str(email) + """[" """ + str(question) + """ ", " """ + str(reponse) + """ "]} """
 				except AttributeError:
 					pass
-			s = liste_tempo_csv
-			fichier = open('/var/www/html/cgi-bin/save_form.csv', 'w')
-			fichier.write(str(s))
-			fichier.close()
+			with open('save_form.json', 'a', encoding="UTF-8") as file:
+				file.dumps(string_to_write)
 
-			liste_tempo_csv.sort()
-			#ajoute le rand en debut de liste
-			liste_tempo_csv.insert(0, id_rand)
 			id_last_question = liste_tempo_csv[len(liste_tempo_csv)-1].split(':')[0]
 			id_last_response = liste_tempo_csv[len(liste_tempo_csv)-1].split(':')[1]
 			valeur = int(id_last_question)
@@ -1315,14 +1313,33 @@ def recup_valeurs():
 	else:
 		return ""
 
-
 ############
 #MAIN
 #############
 html = recup_valeurs()
 
 if form.getvalue("intro") == "Start!":
-	html = parcours_q(1)
+	#with open('save_form.json', 'r', encoding="UTF-8") as f:
+
+	f = open("save_form.json","r")
+	datas = f.read()
+	f.close()
+
+	variable_get = form.getvalue("email")
+	print(datas[str(variable_get)]["question"])
+
+	if datas[str(variable_get)]["question"]:
+		last_couple = datas[variable_get][len(datas[variable_get])-1]
+		question_id = last_couple[0]
+
+		if int(question_id) == 88:
+			parcours_q(89)
+		else:
+			parcours_q(int(question_id))
+	else:
+		with open('save_form.json', 'a', encoding="UTF-8") as file:
+			file.dumps(str(variable_get))
+		html = parcours_q(1)
 
 elif form.getvalue("next") != "Next":
 	html = header() + intro()
