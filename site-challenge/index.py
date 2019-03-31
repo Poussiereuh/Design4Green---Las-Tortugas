@@ -1146,7 +1146,7 @@ def header():
 def intro():
 	return """
 	<div class="container justify">
-		<h2>Welcome to the survey design4green!</h2>
+		<h2>Welcome to the Design4Green survey!</h2>
 		<p>
 			With the support of ADEME, the Ministry of Ecology, Energy and the Sea and the
 			Ministry of Economy and Finance, the association AGIT (Alliance for Green IT) and
@@ -1301,9 +1301,16 @@ def recup_valeurs():
 						string_to_write = """ {""" + str(email) + """[" """ + str(question) + """ ", " """ + str(reponse) + """ "]} """
 				except AttributeError:
 					pass
+<<<<<<< HEAD
 			with open('save_form.json', 'a', encoding="UTF-8") as file:
 				file.dumps(string_to_write)
 
+=======
+
+			liste_tempo_csv.sort()
+			#ajoute le rand en debut de liste
+			liste_tempo_csv.insert(0, id_rand)
+>>>>>>> master
 			id_last_question = liste_tempo_csv[len(liste_tempo_csv)-1].split(':')[0]
 			id_last_response = liste_tempo_csv[len(liste_tempo_csv)-1].split(':')[1]
 			valeur = int(id_last_question)
@@ -1319,6 +1326,7 @@ def recup_valeurs():
 html = recup_valeurs()
 
 if form.getvalue("intro") == "Start!":
+<<<<<<< HEAD
 	#with open('save_form.json', 'r', encoding="UTF-8") as f:
 
 	f = open("save_form.json","r")
@@ -1340,6 +1348,11 @@ if form.getvalue("intro") == "Start!":
 		with open('save_form.json', 'a', encoding="UTF-8") as file:
 			file.dumps(str(variable_get))
 		html = parcours_q(1)
+=======
+
+	email_renseignee = form.getvalue("email")
+	html = parcours_q(1)
+>>>>>>> master
 
 elif form.getvalue("next") != "Next":
 	html = header() + intro()
